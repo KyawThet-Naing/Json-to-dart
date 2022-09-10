@@ -1,0 +1,56 @@
+{
+      "field": [
+            {
+                  "name": "fieldInit",
+                  "join": "\n  ",
+                  "default": "{fieldType} {fieldName};"
+            },
+            {
+                  "name": "fieldConstructor",
+                  "join": "\n    ",
+                  "default": "this.{fieldName},"
+            },
+            {
+                  "name": "fieldFromJson",
+                  "join": "\n    ",
+                  "default": "{fieldName} = json['{fieldJson}'] as {fieldType};",
+                  "list": [
+                        {
+                              "type": "dynamic",
+                              "process": "{fieldName} = json['{fieldJson}'];"
+                        },
+                        {
+                              "type": "Class",
+                              "process": "{fieldName} = (json['{fieldJson}'] as Map<String,dynamic>?) != null ? {className}.fromJson(json['{fieldJson}'] as Map<String,dynamic>) : null;"
+                        },
+                        {
+                              "type": "List<bool>,List<int>,List<double>,List<String>",
+                              "process": "{fieldName} = (json['{fieldJson}'] as List?)?.map((dynamic e) => e as {fieldTypeCode_1}).toList();"
+                        },
+                        {
+                              "type": "List<dynamic>",
+                              "process": "{fieldName} = json['{fieldJson}'] as List?;"
+                        },
+                        {
+                              "type": "List<Class>",
+                              "process": "{fieldName} = (json['{fieldJson}'] as List?)?.map((dynamic e) => {className}.fromJson(e as Map<String,dynamic>)).toList();"
+                        }
+                  ]
+            },
+            {
+                  "name": "fieldToJson",
+                  "join": "\n    ",
+                  "default": "json['{fieldJson}'] = {fieldName};",
+                  "list": [
+                        {
+                              "type": "Class",
+                              "process": "json['{fieldJson}'] = {fieldName}?.toJson();"
+                        },
+                        {
+                              "type": "List<Class>",
+                              "process": "json['{fieldJson}'] = {fieldName}?.map((e) => e.toJson()).toList();"
+                        }
+                  ]
+            }
+      ]
+}

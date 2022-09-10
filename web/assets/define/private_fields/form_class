@@ -1,0 +1,14 @@
+class {className} {
+  {fieldInit}
+
+  {className}({
+    {fieldConstructor}
+  });
+
+  {className}.fromJson(Map<String, dynamic> json)
+    : {fieldFromJson};
+
+  Map<String, dynamic> toJson() => {
+    {fieldToJson}
+  };
+}

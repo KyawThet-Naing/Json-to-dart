@@ -1,0 +1,22 @@
+class {className} {
+  {fieldInit}
+
+  {className}({
+    {fieldConstructor}
+  });
+
+  {className} copyWith({
+    {fieldType} {fieldName},
+  }) {
+    return {className}(
+      {fieldName}: {fieldName} ?? this.{fieldName},
+    );
+  }
+
+  {className}.fromJson(Map<String, dynamic> json)
+    : {fieldFromJson};
+
+  Map<String, dynamic> toJson() => {
+    {fieldToJson}
+  };
+}
